@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 1</title>
+    <link rel="stylesheet" href="Exp_1.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2><i><u>Student Registration Form</u></i></h2>
+
+        <form id="regForm" onsubmit="return showMessage()">
+
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="age">Age :</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+        <p id="successMsg" style="color: green; text-align: center; font-weight: bold;"></p>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("successMsg").innerText =
+                "Submitted Successfully";
+
+            document.getElementById("regForm").reset();
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>
