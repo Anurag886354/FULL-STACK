@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Product Filter</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body{
+    background:#ffffff;
+    padding:60px;
+    color:#111827;
+}
+
+
+h1{
+    font-size:48px;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+
+.filter-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:40px;
+}
+
+.filter-row label{
+    font-size:20px;
+    font-weight:600;
+}
+
+select{
+    width:320px;
+    padding:14px 18px;
+    font-size:18px;
+    border-radius:12px;
+    border:2px solid #e5e7eb;
+    outline:none;
+    background:#ffffff;
+    cursor:pointer;
+}
+
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:30px;
+    max-width:900px;
+}
+
+.card{
+    background:#ffffff;
+    border:2px solid #e5e7eb;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:all 0.45s ease;
+}
+
+.card h3{
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:22px;
+    margin-bottom:14px;
+    font-weight:500;
+}
+
+
+.card p:last-child{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:18px;
+    font-weight:500;
+    color:#ffffff;
+    text-transform:lowercase;
+}
+
+
+.card[data-category="electronics"] p:last-child{
+    background:#2563eb;
+}
+
+
+.card[data-category="cloths"] p:last-child{
+    background:#93c5fd;
+    color:#0f172a;
+}
+
+.hide{
+    opacity:0;
+    transform:scale(0.9);
+    pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Product Filter</h1>
+
+<div class="filter-row">
+    <label>Filter by:</label>
+    <select id="categoryFilter">
+        <option value="all">All Products</option>
+        <option value="cloths">Clothing</option>
+        <option value="electronics">Electronics</option>
+    </select>
+</div>
+
+<div class="products">
+
+    <div class="card" data-category="electronics">
+        <h3>Wireless Headphones</h3>
+        <p>$129.99</p>
+        <p>electronics</p>
+    </div>
+
+    <div class="card" data-category="cloths">
+        <h3>Cotton T-Shirt</h3>
+        <p>$24.99</p>
+        <p>clothing</p>
+    </div>
+
+    <div class="card" data-category="electronics">
+        <h3>Bluetooth Speaker</h3>
+        <p>$89.99</p>
+        <p>electronics</p>
+    </div>
+
+    <div class="card" data-category="cloths">
+        <h3>Denim Jeans</h3>
+        <p>$59.99</p>
+        <p>clothing</p>
+    </div>
+
+</div>
+
+<script>
+let filterDropdown = document.getElementById('categoryFilter');
+let productCards = document.querySelectorAll(".card");
+
+filterDropdown.addEventListener("change", function(){
+    let selectedCategory = this.value;
+
+    productCards.forEach(card =>{
+        let cardCategory = card.getAttribute("data-category");
+
+        if(selectedCategory === "all" || cardCategory === selectedCategory){
+            card.classList.remove("hide");
+            card.style.display = "block";
+        } else {
+            card.classList.add("hide");
+            setTimeout(()=> card.style.display="none", 400);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
