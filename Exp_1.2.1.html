@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Character Counter</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        .container {
+            background: linear-gradient(135deg, #0f172a, #020617);
+            padding: 30px;
+            width: 360px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            color: #e5e7eb;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            resize: none;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+            color: #f8fafc;
+            padding: 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+
+        p {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 13px;
+        }
+
+        #c {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Live Character Counter</h1>
+
+        <textarea id="ta" placeholder="Type your message..."></textarea>
+
+        <p>Total Character : <span id="c">0</span></p>
+    </div>
+
+    <script>
+        let ta = document.getElementById('ta');
+        ta.addEventListener("input", () => {
+            let len = ta.value.length;
+            document.getElementById('c').innerText = len;
+        });
+    </script>
+</body>
+</html>
